@@ -1,0 +1,21 @@
+{
+  "name": "ktor-htmx",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --with-clicks --format pdf --output dist/index.pdf",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.45.0",
+    "@slidev/theme-apple-basic": "^0.20.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.1.42",
+    "@iconify-json/twemoji": "^1.1.15",
+    "playwright-chromium": "^1.40.1"
+  }
+}
