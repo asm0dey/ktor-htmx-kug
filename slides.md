@@ -9,9 +9,10 @@ transition: slide-left
 title: "Ktor and htmx: Tha match made on heaven"
 layout: intro
 colorSchema: 'dark'
+width: 800
 ---
 
-# <logos-ktor-icon /> and &lt;<span style="color: #3d72d7">/</span>&gt; htm<span style="color: #3d72d7">x</span>
+# <logos-ktor-icon /> and <Htmx />
 
 ## The match made on heaven
 
@@ -29,9 +30,10 @@ Pasha Finkelshteyn
 - Full-stack developer (????)
 - I don't like <logos-css-3-official /> and <logos-javascript /> (<logos-typescript-icon /> is awesome tho!)
 - I <twemoji-mending-heart/> <logos-spring-icon/>
-- When <logos-spring-icon/> I start to experiment
+- When <logos-spring-icon/> is not enough I start to experiment
 
 </v-clicks>
+
 
 ---
 
@@ -117,12 +119,18 @@ fun Application.module() {
     }
 }
 ```
+
+<v-click>
+
 And then 
 ```html
 <head>
     <link rel="stylesheet" href="/assets/bootstrap/bootstrap.css">
 </head>
 ```
+  
+</v-click>
+
 
 ---
 
@@ -163,7 +171,7 @@ fun Application.monitoring() {
 
 Since I'm spoiled wit Spring, I can't live without DI
 
-```kotlin
+```kotlin {all|2-4}
 embeddedServer(Netty, port = 8080) {
   di { 
     bind<Random> { singleton { SecureRandom() } } 
@@ -171,14 +179,19 @@ embeddedServer(Netty, port = 8080) {
 }.start(true)
 ```
 
+<v-click>
+
 And then
 
-```kotlin
+```kotlin {all|1|2-3}
 routing {
   controller { MyFirstDIController(instance()) } 
   controller("/protected") { MySecondDIController(instance()) } 
 }
 ```
+  
+</v-click>
+
 
 ---
 
@@ -187,6 +200,12 @@ routing {
 - I have a library in "obscure russian"© fb2 format
 - I need a web interface for it
 - And OPDS interface for it
+
+> The Open Publication Distribution System (OPDS) Catalog format is a syndication format for electronic publications based on Atom and HTTP. OPDS Catalogs enable the aggregation, distribution, discovery, and acquisition of electronic publications.
+
+> OPDS Catalogs use existing or emergent open standards and conventions, with a priority on simplicity.
+
+https://specs.opds.io/opds-1.2
 
 ---
 layout: statement
@@ -238,3 +257,141 @@ create.select(BOOK.AUTHOR_ID, count())
   
   </div>
 </div>
+
+---
+
+# <Htmx />
+
+https://htmx.org
+
+> high power tools for HTML
+
+```html {1|2-4|all}
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <!-- have a button POST a click via AJAX -->
+  <button hx-post="/clicked" hx-swap="outerHTML">
+    Click Me
+  </button>
+```
+
+
+---
+
+# <Htmx />
+
+
+When the response comes - it replaces the `button` altogether.
+
+<v-click>
+
+Example response:
+
+```html
+<span>OK</span>
+```
+
+</v-click>
+<v-click>
+
+Result:
+```html
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <span>OK</span>
+```
+
+</v-click>
+
+---
+
+# <Htmx/>: Out of band updates
+
+What if I need to update another place on the page?
+
+```html {all|4-6|4}
+<div>
+ ...
+</div>
+<div id="breadcrumbs" hx-swap-oob="outerHTML:.breadcrumb">
+    My &gt; Page
+</div>
+```
+
+<v-click>
+
+Will replace not only the requested content, but also breadcrumbs with `My > Page`
+
+</v-click>
+
+---
+layout: statement
+---
+
+# Where am I going with this?
+
+---
+
+# `kotlinx.html`
+
+
+```kotlin {all|1|2|3|4,5|6-13}
+fun Application.module() {
+    routing {
+        get("/") {
+            val name = "Ktor"
+            call.respondHtml(HttpStatusCode.OK) {
+                head {
+                    title {
+                        +name
+                    }
+                }
+                body {
+                    h1 {
+                        +"Hello from $name!"
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+---
+layout: statement
+---
+
+# Demo time!
+
+---
+
+# What did we learn?
+
+<v-clicks>
+
+- Ktor and <Htmx /> are the powerful mix
+- <Htmx /> is easy to use with `kotlinx.html`
+- For a pet project you don't need to know JS/TS
+- And even Kotlin/JS
+- And *maybe* for production too
+
+</v-clicks>
+
+---
+layout: center
+---
+
+# Thank you! Questions?
+
+Find me @
+
+- <logos-twitter /> asm0di0
+- <logos-mastodon-icon /> @asm0dey@fosstodon.org
+- <logos-google-gmail /> me@asm0dey.site
+- <logos-linkedin-icon /> asm0dey
+- <logos-telegram /> asm0dey
+- <logos-whatsapp-icon /> asm0dey
+- <skill-icons-instagram /> asm0dey
+- <logos-facebook /> asm0dey
+
+---
+layout: end
+---
