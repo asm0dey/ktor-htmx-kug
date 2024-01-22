@@ -248,7 +248,7 @@ GROUP BY AUTHOR_ID
   </div>
   <div class="box">
   
-```kotlin {1|2|3-4|all} {at:0}
+```kotlin {1|2|3-4|all}{at:0}
 create.select(BOOK.AUTHOR_ID, count())
       .from(BOOK)
       .groupBy(BOOK.AUTHOR_ID)
