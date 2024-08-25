@@ -1,7 +1,7 @@
 ---
-theme: apple-basic
+theme: default
 class: text-center
-highlighter: shiki
+# highlighter: shiki
 lineNumbers: false
 drawings:
   persist: false
@@ -201,11 +201,15 @@ routing {
 - I need a web interface for it
 - And OPDS interface for it
 
+<v-click>
+
 > The Open Publication Distribution System (OPDS) Catalog format is a syndication format for electronic publications based on Atom and HTTP. OPDS Catalogs enable the aggregation, distribution, discovery, and acquisition of electronic publications.
 
 > OPDS Catalogs use existing or emergent open standards and conventions, with a priority on simplicity.
 
 https://specs.opds.io/opds-1.2
+
+</v-click>
 
 ---
 layout: statement
@@ -224,8 +228,6 @@ erDiagram
     BOOK }|--|{ GENRE : genres
 ```
 
----
-clicks: 3
 ---
 
 # BTW I use jOOQ
@@ -248,7 +250,7 @@ GROUP BY AUTHOR_ID
   </div>
   <div class="box">
   
-```kotlin {1|2|3-4|all}{at:0}
+```kotlin {1|2|3-4|all}{at:1}
 create.select(BOOK.AUTHOR_ID, count())
       .from(BOOK)
       .groupBy(BOOK.AUTHOR_ID)
