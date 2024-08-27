@@ -34,6 +34,27 @@ Pasha Finkelshteyn
 
 </v-clicks>
 
+---
+layout: two-cols-header
+---
+
+# BellSoft
+
+::left::
+
+* Vendor of Liberica JDK
+* Contributor to the OpenJDK
+* Author of ARM32 support in JDK
+* Own base images
+* Own Linux: Alpaquita
+
+<!-- Liberica is the JDK officially recommended by <logos-spring-icon /> -->
+
+<v-click><b>We know our stuff!</b></v-click>
+
+::right::
+
+<img src="/news.png" class="invert rounded self-center"/>
 
 ---
 
@@ -215,7 +236,7 @@ https://specs.opds.io/opds-1.2
 layout: statement
 ---
 
-# Pasha, show the code!
+# Pasha, show the demo!
 
 ---
 
